@@ -1,4 +1,4 @@
-#include<pm-dlist.h>
+#include "pm-dlist.h"
 
 /* G_DEFINE_TYPE 宏可以为我们生成pm_dlist_get_type函数的实现代码 */
 /**
@@ -23,6 +23,7 @@ void pm_dlist_init(PMDList *self){
   g_printf("\t实例结构体初始化!\n");
   self->head = NULL;
   self->tail = NULL;
+  
 }
 
 

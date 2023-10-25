@@ -9,8 +9,9 @@
 			"args": [
 				"-g",
 				"${file}",
+				"-E",
 				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}",
+				"${fileDirname}/${fileBasenameNoExtension}.i",
 				"`pkg-config",
 				"--cflags",
 				"--libs",
