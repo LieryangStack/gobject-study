@@ -15,7 +15,14 @@ typedef struct _PMDListClass PMDListClass;
 struct _PMDListClass {
         GObjectClass parent_class;
 };
-  
+
+typedef struct _PMDListPrivate PMDListPrivate;
+
+#define PM_DLIST_GET_PRIVATE(obj) (\
+        G_TYPE_INSTANCE_GET_PRIVATE ((obj), PM_TYPE_DLIST, PMDListPrivate))
+
+
+
 GType pm_dlist_get_type (void);
   
 #endif

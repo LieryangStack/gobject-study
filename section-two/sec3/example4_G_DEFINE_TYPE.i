@@ -16293,8 +16293,8 @@ __attribute__((noinline)) static GType
 t_double_get_type_once (void) { 
   GType g_define_type_id = g_type_register_static_simple (((GType) ((20) << (2))), 
                                                           g_intern_static_string ("TDouble"), 
-                                                          sizeof (TDoubleClass), (
-                                                          GClassInitFunc)(void (*)(void)) t_double_class_intern_init, 
+                                                          sizeof (TDoubleClass), 
+                                                          (GClassInitFunc)(void (*)(void)) t_double_class_intern_init, 
                                                           sizeof (TDouble), 
                                                           (GInstanceInitFunc)(void (*)(void)) t_double_init, 
                                                           (GTypeFlags) 0); 

@@ -2,9 +2,6 @@
 
 /*生成pm_dlist_get_type函数*/
 G_DEFINE_TYPE (PMDList, pm_dlist, G_TYPE_OBJECT);
-
-#define PM_DLIST_GET_PRIVATE(obj) (\
-        G_TYPE_INSTANCE_GET_PRIVATE ((obj), PM_TYPE_DLIST, PMDListPrivate))
  
 typedef struct _PMDListNode PMDListNode;
 struct  _PMDListNode {
@@ -13,7 +10,6 @@ struct  _PMDListNode {
         void *data;
 };
 
-typedef struct _PMDListPrivate PMDListPrivate;
 struct  _PMDListPrivate {
         PMDListNode *head;
         PMDListNode *tail;

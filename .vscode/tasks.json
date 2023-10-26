@@ -9,9 +9,9 @@
 			"args": [
 				"-g",
 				"${file}",
-				"/home/lieryang/Desktop/gobject-study/section-one/2.Private_Property/pm-dlist.c",
+				"-E",
 				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}",
+				"${fileDirname}/${fileBasenameNoExtension}_G_DEFINE_TYPE_WITH_PRIVATE.i",
 				"`pkg-config",
 				"--cflags",
 				"--libs",
