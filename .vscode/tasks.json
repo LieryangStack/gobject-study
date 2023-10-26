@@ -9,6 +9,7 @@
 			"args": [
 				"-g",
 				"${file}",
+				"/home/lieryang/Desktop/gobject-study/section-one/2.Private_Property/pm-dlist.c",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}",
 				"`pkg-config",
