@@ -11,7 +11,7 @@
 				"${file}",
 				"-E",
 				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}_G_DECLARE_DERIVABLE_TYPE.i",
+				"${fileDirname}/${fileBasenameNoExtension}.i",
 				"`pkg-config",
 				"--cflags",
 				"--libs",

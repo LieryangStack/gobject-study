@@ -71,9 +71,28 @@ typedef enum    /*< skip >*/
 
 ## 4 接口对象
 
-### G_DEFINE_INTERFACE
+接口对象可以当做一个抽象类来看待（注册该类型的时候也就仅仅注册了类，并没有注册实例结构体），但是与抽象类不同的是，虚函数可以由任意对象实现。
 
-### G_DEFINE_INTERFACE_WITH_CODE
+1. **声明** 接口初始化函数;
+
+   `static void t_comparable_default_init (TComparableInterface *klass);`
+
+2. **定义**t_t_comparable_get_type函数。（没有实例结构体及其实例初始化函数）
+    
+    
+    ```c
+    GType g_define_type_id = g_type_register_static_simple (((GType) ((2) << (2))), 
+                                                              g_intern_static_string ("TComparable"), 
+                                                              sizeof (TComparableInterface), 
+                                                              (GClassInitFunc)(void (*)(void)) t_comparable_default_init, 
+                                                              0,  /*没有实例结构体*/
+                                                              (GInstanceInitFunc) ((void *)0), /* 没有实例初始化函数 */
+                                                              (GTypeFlags) 0); 
+    ```
+
+**G_DEFINE_INTERFACE**
+
+**G_DEFINE_INTERFACE_WITH_CODE**
 
 ## 补充：宏展开代码
 
@@ -279,4 +298,44 @@ t_double_get_type_once (void) {
 
 /********************************以上内容由G_DEFINE_TYPE_WITH_PRIVATE (TDouble, t_double, G_TYPE_OBJECT)宏展开***************END********************************/
 
+```
+
+```c
+/************************************G_DEFINE_INTERFACE宏展开*********************START**********************/
+static void t_comparable_default_init (TComparableInterface *klass);
+GType t_comparable_get_type (void) { 
+  static gsize static_g_define_type_id = 0; 
+  if ((__extension__ ({ _Static_assert (sizeof *(&static_g_define_type_id) == sizeof (gpointer), "Expression evaluates to false"); 
+    (void) (0 ? (gpointer) *(&static_g_define_type_id) : ((void *)0)); 
+    (!(__extension__ ({ _Static_assert (sizeof *(&static_g_define_type_id) == sizeof (gpointer), "Expression evaluates to false"); 
+    __typeof__ (*(&static_g_define_type_id)) gapg_temp_newval; 
+    __typeof__ ((&static_g_define_type_id)) gapg_temp_atomic = (&static_g_define_type_id); 
+    __atomic_load (gapg_temp_atomic, &gapg_temp_newval, 5); 
+    gapg_temp_newval; 
+    })) && g_once_init_enter (&static_g_define_type_id)); 
+  }))) {
+  
+    GType g_define_type_id = g_type_register_static_simple (((GType) ((2) << (2))), 
+                                                             g_intern_static_string ("TComparable"), 
+                                                             sizeof (TComparableInterface), 
+                                                             (GClassInitFunc)(void (*)(void)) t_comparable_default_init, 
+                                                             0, 
+                                                             (GInstanceInitFunc) ((void *)0), 
+                                                             (GTypeFlags) 0); 
+    
+    if (((GType) ((20) << (2))) != ((GType) ((0) << (2)))) 
+      g_type_interface_add_prerequisite (g_define_type_id, ((GType) ((20) << (2)))); 
+      
+      { {;;} } 
+      
+      (__extension__ ({ 
+        _Static_assert (sizeof *(&static_g_define_type_id) == sizeof (gpointer), "Expression evaluates to false"); 
+        0 ? (void) (*(&static_g_define_type_id) = (g_define_type_id)) : (void) 0; g_once_init_leave ((&static_g_define_type_id), (gsize) (g_define_type_id)); 
+      })); 
+  } 
+  return static_g_define_type_id; 
+}
+
+
+/************************************G_DEFINE_INTERFACE宏展开*********************END**********************/
 ```

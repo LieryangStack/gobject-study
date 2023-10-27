@@ -47,6 +47,25 @@ G_DECLARE_DERIVABLE_TYPE执行以下主要操作:
 
 ## 3 G_DECLARE_INTERFACE
 
+<span style="color: red;">仅仅有一个接口类</span>
+
+G_DECLARE_INTERFACE执行以下主要操作:
+
+ - **定义** 
+    ```c
+     /* 感觉没有必要存在，因为注册该类型就不会注册实例结构体 */
+    typedef struct _TComparable TComparable;
+
+    typedef struct _TComparableInterface TComparableInterface; 
+    ```
+ - **定义** `T_COMPARABLE` 宏。
+
+ - **定义** `T_IS_COMPARABLE` 宏。
+
+ - **定义** `T_COMPARABLE_GET_IFACE` 宏。
+
+
+
 ## 补充：宏展开代码
 
 ```c
@@ -307,4 +326,166 @@ T_DOUBLE_GET_CLASS (gpointer ptr) {
 # 4 "/home/lieryang/Desktop/gobject-study/section-two/sec3/example5.c"
 
 /******************************G_DECLARE_DERIVABLE_TYPE (TDouble, t_double, T, DOUBLE, GObject)宏展开********END********************************/
+```
+
+```c
+/************************************G_DECLARE_INTERFACE宏展开*********************START**********************/
+
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+#pragma GCC diagnostic push
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+
+typedef struct _TComparable TComparable; 
+typedef struct _TComparableInterface TComparableInterface; 
+typedef TComparable *TComparable_autoptr; 
+typedef GList *TComparable_listautoptr; 
+typedef GSList *TComparable_slistautoptr; 
+typedef GQueue *TComparable_queueautoptr;
+
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+#pragma GCC diagnostic push
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+
+static __attribute__ ((__unused__)) inline void 
+glib_autoptr_clear_TComparable (TComparable *_ptr) { 
+  if (_ptr) (glib_autoptr_clear_GObject) ((GObject *) _ptr); 
+} 
+
+static __attribute__ ((__unused__)) inline void 
+glib_autoptr_cleanup_TComparable (TComparable **_ptr) { 
+  glib_autoptr_clear_TComparable (*_ptr); 
+} 
+
+static __attribute__ ((__unused__)) inline void 
+glib_listautoptr_cleanup_TComparable (GList **_l) { 
+  g_list_free_full (*_l, (GDestroyNotify) (void(*)(void)) glib_autoptr_clear_GObject); 
+} 
+
+static __attribute__ ((__unused__)) inline void 
+glib_slistautoptr_cleanup_TComparable (GSList **_l) { 
+  g_slist_free_full (*_l, (GDestroyNotify) (void(*)(void)) glib_autoptr_clear_GObject); 
+} 
+static __attribute__ ((__unused__)) inline void 
+glib_queueautoptr_cleanup_TComparable (GQueue **_q) { 
+  if (*_q) g_queue_free_full (*_q, (GDestroyNotify) (void(*)(void)) glib_autoptr_clear_GObject); 
+}
+
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+#pragma GCC diagnostic pop
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+ __attribute__ ((__unused__)) static inline TComparable * 
+T_COMPARABLE (gpointer ptr) { 
+  return (((TComparable*) (void *) g_type_check_instance_cast ((GTypeInstance*) (ptr), (t_comparable_get_type ())))); 
+} 
+
+__attribute__ ((__unused__)) static inline gboolean 
+T_IS_COMPARABLE (gpointer ptr) { 
+  return ((__extension__ ({ GTypeInstance *__inst = (GTypeInstance*) (ptr); 
+                            GType __t = (t_comparable_get_type ()); 
+                            gboolean __r; 
+                            if (!__inst) __r = (0); 
+                            else if (__inst->g_class && __inst->g_class->g_type == __t) __r = (!(0)); 
+                            else __r = g_type_check_instance_is_a (__inst, __t); __r; }))); 
+} 
+
+__attribute__ ((__unused__)) static inline TComparableInterface * 
+T_COMPARABLE_GET_IFACE (gpointer ptr) { 
+  return (((TComparableInterface*) g_type_interface_peek (((GTypeInstance*) (ptr))->g_class, (t_comparable_get_type ())))); 
+}
+
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+#pragma GCC diagnostic pop
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+
+
+/************************************G_DECLARE_INTERFACE宏展开*********************END**********************/
+```
+
+```c
+/************************************G_DECLARE_INTERFACE宏展开*********************START**********************/
+
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+#pragma GCC diagnostic push
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+
+typedef struct _TComparable TComparable; 
+typedef struct _TComparableInterface TComparableInterface; 
+typedef TComparable *TComparable_autoptr; 
+typedef GList *TComparable_listautoptr; 
+typedef GSList *TComparable_slistautoptr; 
+typedef GQueue *TComparable_queueautoptr;
+
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+#pragma GCC diagnostic push
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+
+static __attribute__ ((__unused__)) inline void 
+glib_autoptr_clear_TComparable (TComparable *_ptr) { 
+  if (_ptr) (glib_autoptr_clear_GObject) ((GObject *) _ptr); 
+} 
+
+static __attribute__ ((__unused__)) inline void 
+glib_autoptr_cleanup_TComparable (TComparable **_ptr) { 
+  glib_autoptr_clear_TComparable (*_ptr); 
+} 
+
+static __attribute__ ((__unused__)) inline void 
+glib_listautoptr_cleanup_TComparable (GList **_l) { 
+  g_list_free_full (*_l, (GDestroyNotify) (void(*)(void)) glib_autoptr_clear_GObject); 
+} 
+
+static __attribute__ ((__unused__)) inline void 
+glib_slistautoptr_cleanup_TComparable (GSList **_l) { 
+  g_slist_free_full (*_l, (GDestroyNotify) (void(*)(void)) glib_autoptr_clear_GObject); 
+} 
+static __attribute__ ((__unused__)) inline void 
+glib_queueautoptr_cleanup_TComparable (GQueue **_q) { 
+  if (*_q) g_queue_free_full (*_q, (GDestroyNotify) (void(*)(void)) glib_autoptr_clear_GObject); 
+}
+
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+#pragma GCC diagnostic pop
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+ __attribute__ ((__unused__)) static inline TComparable * 
+T_COMPARABLE (gpointer ptr) { 
+  return (((TComparable*) (void *) g_type_check_instance_cast ((GTypeInstance*) (ptr), (t_comparable_get_type ())))); 
+} 
+
+__attribute__ ((__unused__)) static inline gboolean 
+T_IS_COMPARABLE (gpointer ptr) { 
+  return ((__extension__ ({ GTypeInstance *__inst = (GTypeInstance*) (ptr); 
+                            GType __t = (t_comparable_get_type ()); 
+                            gboolean __r; 
+                            if (!__inst) __r = (0); 
+                            else if (__inst->g_class && __inst->g_class->g_type == __t) __r = (!(0)); 
+                            else __r = g_type_check_instance_is_a (__inst, __t); __r; }))); 
+} 
+
+__attribute__ ((__unused__)) static inline TComparableInterface * 
+T_COMPARABLE_GET_IFACE (gpointer ptr) { 
+  return (((TComparableInterface*) g_type_interface_peek (((GTypeInstance*) (ptr))->g_class, (t_comparable_get_type ())))); 
+}
+
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+#pragma GCC diagnostic pop
+# 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
+
+
+/************************************G_DECLARE_INTERFACE宏展开*********************END**********************/
 ```
