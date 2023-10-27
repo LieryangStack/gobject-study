@@ -11,7 +11,7 @@
 				"${file}",
 				"-E",
 				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}_G_DEFINE_TYPE_WITH_PRIVATE.i",
+				"${fileDirname}/${fileBasenameNoExtension}_G_DECLARE_DERIVABLE_TYPE.i",
 				"`pkg-config",
 				"--cflags",
 				"--libs",

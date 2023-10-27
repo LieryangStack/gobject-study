@@ -250,12 +250,17 @@ t_double_get_type_once (void) {
 
 ```
 
-G_DEFINE_TYPE的作用如下:
+**G_DEFINE_TYPE** 的作用如下:
 
- - **声明**一个类初始化函数。它的名称是` <name space>_<name>_class_init`。例如，如果对象名是TDouble，它就是t_double_class_init。这是一个声明，不是定义。你需要定义它。
- - **声明**一个实例初始化函数。其名称为`<name space>_<name>_init`。例如，如果对象名称为TDouble，则它为t_double_init。这是声明，不是定义。你需要定义它。
- - **定义**一个指向父类的静态变量。它的名字是`<name space>_<name>_parent_class`。例如，如果对象名称是TDouble，它就是t_double_parent_class。
- - **定义**一个`<name space>_<name>_get_type ()`函数。例如，如果对象名称是TDouble，则它是t_double_get_type。注册是在这个函数中完成的，就像前面的小节一样。
+ - **声明**一个类初始化函数。它的名称是` t_double_class_init`。例如，如果对象名是TDouble，它就是t_double_class_init。这是一个声明，不是定义。你需要定义它。
+ 
+ - **声明**一个实例初始化函数。其名称为`t_double_init`。例如，如果对象名称为TDouble，则它为t_double_init。这是声明，不是定义。你需要定义它。
+ 
+ - **定义**一个指向父类的静态变量。它的名字是`t_double_parent_class`。例如，如果对象名称是TDouble，它就是t_double_parent_class。
+ 
+ - **定义**一个`t_double_get_type ()`函数。注册是在这个函数中完成的，就像前面的小节一样。
+ 
+ - **定义**一个`t_double_get_instance_private（）`函数。
 
 使用这个宏可以减少程序的行数。请参阅下面的示例example4.c，其工作原理与example3.c相同。
 
@@ -438,11 +443,17 @@ T_IS_DOUBLE (gpointer ptr) {
 
 G_DECLARE_FINAL_TYPE执行以下操作:
 
- - **声明**`<name space>_<name>_get_type ()`函数。这只是声明。你需要定义它。但是你可以使用`G_DEFINE_TYPE`宏，它的扩展包含了函数的定义。实际上，你不需要自己写定义。
- - **定义**`typedef struct <_NAME SPACE><NAME>`。例如，如果对象名称为TDouble，则`typedef struct _TDouble TDouble`将包含在展开中。但是你需要在G_DEFINE_TYPE之前**自己定义**struct _TDouble结构体。
- - **定义**了`<NAME SPACE>_<NAME> `宏。例如，如果对象是TDouble，宏就是T_DOUBLE。它将展开为一个函数，将实参转换为指向对象的指针。例如，T_Double (obj)将obj类型强制转换为TDouble *。
- - **定义**了`<NAME SPACE>_IS_<NAME>`宏。例如，如果对象是TDouble，宏就是T_IS_DOUBLE。它将扩展为一个函数，该函数检查参数是否指向TDouble的实例。如果参数指向TDouble的后代，则返回true。
- - **定义**了类结构体。一个final类型对象不需要有自己的类结构体成员。定义类似于example4.c中的第11至14行。
+ - **定义** `typedef struct _TDouble TDouble;`。你需要在G_DEFINE_TYPE之前**自己定义**struct _TDouble结构体。
+
+ - **定义** 类结构体。一个final类型对象不需要有自己的类结构体成员。定义类似于example4.c中的第11至14行。
+
+    ```c
+    typedef struct { 
+      GObjectClass parent_class; 
+    } TDoubleClass; 
+    ```
+ - **定义** `T_DOUBLE` 宏。例如，如果对象是TDouble，宏就是T_DOUBLE。它将展开为一个函数，将实参转换为指向对象的指针。例如，T_Double (obj)将obj类型强制转换为TDouble *。
+ - **定义** `T_IS_DOUBLE` 宏。例如，如果对象是TDouble，宏就是T_IS_DOUBLE。它将扩展为一个函数，该函数检查参数是否指向TDouble的实例。如果参数指向TDouble的后代，则返回true。
 
 你需要在`G_DECLARE_FINAL_TYPE`之前编写该对象类型的宏定义。例如，如果对象是TDouble，那么
 

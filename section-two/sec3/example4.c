@@ -26,6 +26,7 @@ t_double_class_init (TDoubleClass *class) {
 
 static void
 t_double_init (TDouble *self) {
+  
 }
 
 int
