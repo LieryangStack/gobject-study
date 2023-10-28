@@ -1,7 +1,7 @@
 #include <glib-object.h>
 
 #define T_TYPE_DOUBLE  (t_double_get_type ())
-G_DECLARE_DERIVABLE_TYPE (TDouble, t_double, T, DOUBLE, GObject)
+G_DECLARE_FINAL_TYPE (TDouble, t_double, T, DOUBLE, GObject)
 
 struct _TDoubleClass {
   GObjectClass parent_class;
@@ -50,6 +50,7 @@ main (int argc, char **argv) {
   else
     g_print ("d is not GObject instance.\n");
   g_object_unref (d);
+
 
   return 0;
 }
