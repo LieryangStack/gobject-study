@@ -16,17 +16,18 @@ G_DEFINE_TYPE (TDouble, t_double, G_TYPE_OBJECT)
 
 static void
 t_double_class_init (TDoubleClass *class) {
+  g_print ("%s\n", __func__);
 }
 
 static void
 t_double_init (TDouble *self) {
-
+  g_print ("%s\n", __func__);
 }
 
 int
 main (int argc, char **argv) {
   GType dtype;
-  TDouble *d;
+  TDouble *d, *d1;
 
   dtype = t_double_get_type (); /* or dtype = T_TYPE_DOUBLE */
   if (dtype)
@@ -35,6 +36,7 @@ main (int argc, char **argv) {
     g_print ("Registration failed.\n");
 
   d = g_object_new (T_TYPE_DOUBLE, NULL);
+  d1 = g_object_new (T_TYPE_DOUBLE, NULL);
   if (d)
     g_print ("Instantiation was a success. The instance address is %p.\n", d);
   else
@@ -49,6 +51,7 @@ main (int argc, char **argv) {
     g_print ("d is GObject instance.\n");
   else
     g_print ("d is not GObject instance.\n");
+  g_object_unref (d);
   g_object_unref (d);
 
 
