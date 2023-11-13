@@ -94,6 +94,23 @@ typedef enum    /*< skip >*/
 
 **G_DEFINE_INTERFACE_WITH_CODE**
 
+## 5 封装结构体或者联合体对象
+
+`G_DEFINE_BOXED_TYPE`` 在 GObject 系统中是一个宏，用于定义新的 “boxed type” 。GObject 的 boxed types 用于处理纯旧数据（POD）结构，这些数据类型如结构体或联合体，并使其与 GObject 类型系统兼容。
+
+定义了 boxed type 后，你可以在 GObject 系统中，例如在 GValue 或信号中，使用这些类型。
+
+<span style="background-color:pink">这类型对象没有信号，属性，引用计算等GObject具有的特性。<span>
+
+<span style="background-color:pink">这类型不会自动注释到类型系统(需要调用my_struct_get_type()函数)，不能使用g_object_new。<span>
+
+### G_DEFINE_BOXED_TYPE
+
+### G_DEFINE_BOXED_TYPE_WITH_CODE
+
+### G_DEFINE_BOXED_TYPE
+
+
 ## 补充：宏展开代码
 
 ```c
@@ -338,4 +355,56 @@ GType t_comparable_get_type (void) {
 
 
 /************************************G_DEFINE_INTERFACE宏展开*********************END**********************/
+```
+
+```c
+/******************************************G_DEFINE_BOXED_TYPE (MyStruct, my_struct, my_struct_copy, my_struct_free)展开***************START*************************/
+
+static GType my_struct_get_type_once (void);
+
+GType my_struct_get_type (void) { 
+  static gsize static_g_define_type_id = 0; 
+  if ((__extension__ ({ _
+    Static_assert (sizeof *(&static_g_define_type_id) == sizeof (gpointer), "Expression evaluates to false"); 
+    (void) (0 ? (gpointer) *(&static_g_define_type_id) : ((void *)0)); 
+    (!(__extension__ ({ 
+      _Static_assert (sizeof *(&static_g_define_type_id) == sizeof (gpointer), "Expression evaluates to false"); 
+      __typeof__ (*(&static_g_define_type_id)) gapg_temp_newval; 
+      __typeof__ ((&static_g_define_type_id)) gapg_temp_atomic = (&static_g_define_type_id); 
+      __atomic_load (gapg_temp_atomic, &gapg_temp_newval, 5); 
+      gapg_temp_newval; 
+      })) && g_once_init_enter (&static_g_define_type_id)); 
+    }))) { 
+      GType g_define_type_id = my_struct_get_type_once (); 
+      
+    (__extension__ ({ 
+      _Static_assert (sizeof *(&static_g_define_type_id) == sizeof (gpointer), "Expression evaluates to false"); 
+      0 ? (void) (*(&static_g_define_type_id) = (g_define_type_id)) : (void) 0; 
+      g_once_init_leave ((&static_g_define_type_id), (gsize) (g_define_type_id)); 
+      })
+    ); 
+  } 
+  
+  return static_g_define_type_id; 
+} 
+
+__attribute__ ((__noinline__)) static GType 
+my_struct_get_type_once (void) { 
+  GType (* _g_register_boxed) (const gchar *, 
+                               union { MyStruct * (*do_copy_type) (MyStruct *); 
+                               MyStruct * (*do_const_copy_type) (const MyStruct *);  
+                               GBoxedCopyFunc do_copy_boxed; } 
+                              __attribute__((__transparent_union__)), 
+                              union { void (* do_free_type) (MyStruct *); 
+                                      GBoxedFreeFunc do_free_boxed; } 
+                              __attribute__((__transparent_union__)) ) = g_boxed_type_register_static; 
+                              
+  GType g_define_type_id = _g_register_boxed (g_intern_static_string ("MyStruct"), my_struct_copy, my_struct_free); 
+
+  { {{};} } 
+
+  return g_define_type_id; 
+}
+
+/******************************************G_DEFINE_BOXED_TYPE (MyStruct, my_struct, my_struct_copy, my_struct_free)展开******************END**********************/
 ```
