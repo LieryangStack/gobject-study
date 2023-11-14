@@ -100,7 +100,9 @@ typedef enum    /*< skip >*/
 
 定义了 boxed type 后，你可以在 GObject 系统中，例如在 GValue 或信号中，使用这些类型。
 
-<span style="background-color:pink">这类型对象没有信号，属性，引用计算等GObject具有的特性。<span>
+<span style="background-color:pink">这类型对象没有信号，属性，引用计数等GObject具有的特性。<span>
+
+<span style="background-color:pink">GBoxed是一个基本类型，不可实例化(instantiable)、不可类化(classed)<span>
 
 <span style="background-color:pink">这类型不会自动注释到类型系统(需要调用my_struct_get_type()函数)，不能使用g_object_new。<span>
 
