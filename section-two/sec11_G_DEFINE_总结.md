@@ -59,7 +59,7 @@ typedef enum    /*< skip >*/
 
 ## 3 最终对象
 
-<span style="color: red;">最终对象不能被继承</span>，展开抽象对象定义宏后，与 G_DEFINE_TYPE 唯一不同的地方就是 t_double_get_type_once 函数中的 GTypeFlags变量的参数是 **G_TYPE_FLAG_FINAL**。
+<span style="color: red;">最终对象不能被继承</span>，展开最终对象定义宏后，与 G_DEFINE_TYPE 唯一不同的地方就是 t_double_get_type_once 函数中的 GTypeFlags变量的参数是 **G_TYPE_FLAG_FINAL**。
 
 一个final类型对象不需要有自己的类结构体成员。
 
@@ -299,12 +299,14 @@ GType t_double_get_type (void) {
 __attribute__ ((__noinline__)) static GType 
 t_double_get_type_once (void) { 
   GType g_define_type_id = g_type_register_static_simple (((GType) ((20) << (2))),
-   g_intern_static_string ("TDouble"), 
-   sizeof (TDoubleClass), (GClassInitFunc)(void (*)(void)) 
-   t_double_class_intern_init, 
-   sizeof (TDouble), 
-   (GInstanceInitFunc)(void (*)(void)) t_double_init, 
-   (GTypeFlags) 0); { {{ 
+                                                          g_intern_static_string ("TDouble"), 
+                                                          sizeof (TDoubleClass), (GClassInitFunc)(void (*)(void)) 
+                                                          t_double_class_intern_init, 
+                                                          sizeof (TDouble), 
+                                                          (GInstanceInitFunc)(void (*)(void)) t_double_init, 
+                                                          (GTypeFlags) 0); 
+   
+   { {{ 
     
     /*  与G_DEFINE_TYPE区别地方 */
     TDouble_private_offset = g_type_add_instance_private (g_define_type_id, sizeof (TDoublePrivate)); 
