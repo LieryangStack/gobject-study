@@ -16229,10 +16229,9 @@ typedef GTypeClass *GTypeClass_autoptr; typedef GList *GTypeClass_listautoptr; t
 # 2 "/home/lieryang/Desktop/gobject-study/section-two/sec3/example5.c" 2
 
 
-GType t_double_get_type (void);
-
-
 /******************************G_DECLARE_FINAL_TYPE (TDouble, t_double, T, DOUBLE, GObject)宏展开********START********************************/
+
+GType t_double_get_type (void);
 
 # 4 "/home/lieryang/Desktop/gobject-study/section-two/sec3/example5.c"
 #pragma GCC diagnostic push

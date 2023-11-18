@@ -17338,11 +17338,9 @@ typedef GTypeClass *GTypeClass_autoptr; typedef GList *GTypeClass_listautoptr; t
 # 43 "/usr/include/glib-2.0/glib-object.h" 2
 # 2 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c" 2
 
+/************************************G_DECLARE_INTERFACE宏展开*********************START**********************/
 
 GType t_comparable_get_type (void);
-
-
-/************************************G_DECLARE_INTERFACE宏展开*********************START**********************/
 
 # 4 "/home/lieryang/Desktop/gobject-study/section-two/sec9/interface.c"
 #pragma GCC diagnostic push
